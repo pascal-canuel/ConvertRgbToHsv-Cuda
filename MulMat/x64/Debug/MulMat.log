@@ -1,0 +1,27 @@
+﻿  Compiling CUDA source file Kernel.cu...
+  
+  C:\Users\usager\Documents\SobelFilter-master\SobelFilter-master - Copie\MulMat>"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\bin\nvcc.exe" -gencode=arch=compute_30,code=\"sm_30,compute_30\" --use-local-env -ccbin "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\x86_amd64" -x cu  -IC:\opencv\..\..\include -IC:\opencv\build\include -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\include" -I"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v9.2\include"  -G   --keep-dir x64\Debug -maxrregcount=0  --machine 64 --compile -cudart static  -g   -D_DEBUG -D_CONSOLE -D_UNICODE -DUNICODE -Xcompiler "/EHsc /W3 /nologo /Od /Fdx64\Debug\vc140.pdb /FS /Zi /RTC1 /MDd " -o x64\Debug\Kernel.cu.obj "C:\Users\usager\Documents\SobelFilter-master\SobelFilter-master - Copie\MulMat\Kernel.cu" 
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(15): warning C4005: 'CV_64FC1'á: redÚfinition de macro
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(16): warning C4005: 'CV_32F'á: redÚfinition de macro
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(17): warning C4005: 'CV_8U'á: redÚfinition de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\tchar.h(643): warning : expression has no effect
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(49): warning : variable "ImageWidth" was declared but never referenced
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(112): warning : transfer of control bypasses initialization of:
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(119): warning : transfer of control bypasses initialization of:
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(15): warning C4005: 'CV_64FC1'á: redÚfinition de macro
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(16): warning C4005: 'CV_32F'á: redÚfinition de macro
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(17): warning C4005: 'CV_8U'á: redÚfinition de macro
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\tchar.h(643): warning : expression has no effect
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(112): warning : transfer of control bypasses initialization of:
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(119): warning : transfer of control bypasses initialization of:
+  Kernel.cu
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(105): warning C4267: 'initialisation' : conversion de 'size_t' en 'unsigned int', perte possible de données
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(138): warning C4267: 'argument' : conversion de 'size_t' en 'int', perte possible de données
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(167): warning C4800: 'cudaError_t' : valeur forcée à la valeur booléenne 'true' ou 'false' (avertissement sur les performances)
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(163): warning C4533: l'initialisation de 'dimGrid' est ignorée par 'goto Error'
+  C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(125): note: voir la déclaration de 'dimGrid'
+  C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(163): note: voir la déclaration de 'Error'
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(163): warning C4533: l'initialisation de 'dimBlock' est ignorée par 'goto Error'
+  C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(123): note: voir la déclaration de 'dimBlock'
+  C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(163): note: voir la déclaration de 'Error'
+  MulMat.vcxproj -> C:\Users\usager\Documents\SobelFilter-master\SobelFilter-master - Copie\x64\Debug\MulMat.exe
