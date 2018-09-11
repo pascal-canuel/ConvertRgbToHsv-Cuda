@@ -46,52 +46,53 @@ __global__ void Kernel_Tst_Img_CV_8U(CV_8U *img, CV_8U *imgout, int ImgWidth, in
 {
 	int ImgNumColonne = blockIdx.x  * blockDim.x + threadIdx.x;
 	int ImgNumLigne = blockIdx.y  * blockDim.y + threadIdx.y;
-	int ImageWidth = blockDim.x * gridDim.x;
-	int Index = (ImgNumLigne * ImgWidth + ImgNumColonne);
+	//int ImageWidth = blockDim.x * gridDim.x;
+	int Index = (ImgNumLigne * ImgWidth + ImgNumColonne) * 3;
 
-	imgout[Index] = img[Index];
-	imgout[Index + 1] = img[Index + 1];
-	imgout[Index + 2] = img[Index + 2];
+	if ((ImgNumColonne < ImgWidth) && (ImgNumLigne <  imgHeigh))
+	{
+		/* Kernel Code Here */
+		imgout[Index] = img[Index];
+		imgout[Index + 1] = img[Index + 1];
+		imgout[Index + 2] = img[Index + 2];
 
-	//if(ImgNumLigne>imgHeigh || ImgNumColonne > ImgWidth)
-	//	return;
+		//double blue = (double)img[Index] / 255;
+		//double green = (double)img[Index + 1] / 255;
+		//double red = (double)img[Index + 2] / 255;
 
-	//double blue = (double)img[Index] / 255;
-	//double green = (double)img[Index + 1] / 255;
-	//double red = (double)img[Index + 2] / 255;
+		//double cMax = maxVal(blue, green, red);
+		//double cMin = minVal(blue, green, red);
 
-	//double cMax = maxVal(blue, green, red);
-	//double cMin = minVal(blue, green, red);
+		//double delta = cMax - cMin;
 
-	//double delta = cMax - cMin;
+		////	HUE
+		//double hue = 0;
 
-	////	HUE
-	//double hue = 0;
+		//if (blue == cMax) {
+		//	hue = 60 * ((red - green) / delta + 4);
+		//}
+		//else if (green == cMax) {
+		//	hue = 60 * ((blue - red) / delta + 2);
+		//}
+		//else if (red == cMax) {
+		//	hue = 60 * ((green - blue) / delta);
+		//	if (hue < 0)
+		//		hue += 360;
+		//}
 
-	//if (blue == cMax) {
-	//	hue = 60 * ((red - green) / delta + 4);
-	//}
-	//else if (green == cMax) {
-	//	hue = 60 * ((blue - red) / delta + 2);
-	//}
-	//else if (red == cMax) {
-	//	hue = 60 * ((green - blue) / delta);
-	//	if (hue < 0)
-	//		hue += 360;
-	//}
+		////	SATURATION
+		//double saturation = 0;
+		//if (cMax != 0) {
+		//	saturation = delta / cMax;
+		//}
 
-	////	SATURATION
-	//double saturation = 0;
-	//if (cMax != 0) {
-	//	saturation = delta / cMax;
-	//}
+		////	VALUE
+		//double value = cMax;
 
-	////	VALUE
-	//double value = cMax;
-
-	//imgout[Index] = hue / 2;
-	//imgout[Index + 1] = saturation * 255;
-	//imgout[Index + 2] = value * 255;
+		//imgout[Index] = hue / 2;
+		//imgout[Index + 1] = saturation * 255;
+		//imgout[Index + 2] = value * 255;
+	}
 
 	return;
 }
@@ -122,6 +123,7 @@ extern "C" bool GPGPU_TstImg_CV_8U(cv::Mat* img, cv::Mat* GPGPUimg)
 	// Launch a kernel on the GPU with one thread for each element.
 	dim3 dimBlock(BLOCK_SIZE, BLOCK_SIZE);
 	//dim3 dimGrid(iDivUp(img->step1(), BLOCK_SIZE), iDivUp(img->cols, BLOCK_SIZE));
+	//	PRINT EVERYTHING IF YOU MULTIPLY * 3
 	dim3 dimGrid(iDivUp(img->rows, BLOCK_SIZE), iDivUp(img->cols, BLOCK_SIZE));
 
 
@@ -135,7 +137,7 @@ extern "C" bool GPGPU_TstImg_CV_8U(cv::Mat* img, cv::Mat* GPGPUimg)
 	}
 
 
-	Kernel_Tst_Img_CV_8U << <dimGrid, dimBlock >> >(devImage, devImageOut, img->step1(), img->rows);
+	Kernel_Tst_Img_CV_8U << <dimGrid, dimBlock >> >(devImage, devImageOut, img->cols, img->rows);
 	// Check for any errors launching the kernel
 	cudaStatus = cudaGetLastError();
 	if (cudaStatus != cudaSuccess)

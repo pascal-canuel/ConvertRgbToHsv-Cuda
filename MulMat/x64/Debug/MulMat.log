@@ -5,23 +5,22 @@ C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/K
 C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(16): warning C4005: 'CV_32F'á: redÚfinition de macro
 C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(17): warning C4005: 'CV_8U'á: redÚfinition de macro
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\tchar.h(643): warning : expression has no effect
-C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(49): warning : variable "ImageWidth" was declared but never referenced
-C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(112): warning : transfer of control bypasses initialization of:
-C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(119): warning : transfer of control bypasses initialization of:
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(113): warning : transfer of control bypasses initialization of:
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(120): warning : transfer of control bypasses initialization of:
 C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(15): warning C4005: 'CV_64FC1'á: redÚfinition de macro
 C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(16): warning C4005: 'CV_32F'á: redÚfinition de macro
 C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(17): warning C4005: 'CV_8U'á: redÚfinition de macro
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\tchar.h(643): warning : expression has no effect
-C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(112): warning : transfer of control bypasses initialization of:
-C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(119): warning : transfer of control bypasses initialization of:
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(113): warning : transfer of control bypasses initialization of:
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(120): warning : transfer of control bypasses initialization of:
   Kernel.cu
-C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(105): warning C4267: 'initialisation' : conversion de 'size_t' en 'unsigned int', perte possible de données
-C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(138): warning C4267: 'argument' : conversion de 'size_t' en 'int', perte possible de données
-C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(167): warning C4800: 'cudaError_t' : valeur forcée à la valeur booléenne 'true' ou 'false' (avertissement sur les performances)
-C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(163): warning C4533: l'initialisation de 'dimGrid' est ignorée par 'goto Error'
-  C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(125): note: voir la déclaration de 'dimGrid'
-  C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(163): note: voir la déclaration de 'Error'
-C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(163): warning C4533: l'initialisation de 'dimBlock' est ignorée par 'goto Error'
-  C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(123): note: voir la déclaration de 'dimBlock'
-  C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(163): note: voir la déclaration de 'Error'
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(106): warning C4267: 'initialisation' : conversion de 'size_t' en 'unsigned int', perte possible de données
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(140): warning C4267: 'argument' : conversion de 'size_t' en 'int', perte possible de données
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(169): warning C4800: 'cudaError_t' : valeur forcée à la valeur booléenne 'true' ou 'false' (avertissement sur les performances)
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(165): warning C4533: l'initialisation de 'dimGrid' est ignorée par 'goto Error'
+  C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(127): note: voir la déclaration de 'dimGrid'
+  C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(165): note: voir la déclaration de 'Error'
+C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(165): warning C4533: l'initialisation de 'dimBlock' est ignorée par 'goto Error'
+  C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(124): note: voir la déclaration de 'dimBlock'
+  C:/Users/usager/Documents/SobelFilter-master/SobelFilter-master - Copie/MulMat/Kernel.cu(165): note: voir la déclaration de 'Error'
   MulMat.vcxproj -> C:\Users\usager\Documents\SobelFilter-master\SobelFilter-master - Copie\x64\Debug\MulMat.exe
