@@ -46,10 +46,9 @@ __global__ void Kernel_Tst_Img_CV_8U(CV_8U *img, CV_8U *imgout, int ImgWidth, in
 {
 	int ImgNumColonne = blockIdx.x  * blockDim.x + threadIdx.x;
 	int ImgNumLigne = blockIdx.y  * blockDim.y + threadIdx.y;
-	//int ImageWidth = blockDim.x * gridDim.x;
 	int Index = (ImgNumLigne * ImgWidth + ImgNumColonne) * 3;
 
-	if ((ImgNumColonne < ImgWidth) && (ImgNumLigne <  imgHeigh))
+	if ((ImgNumColonne < ImgWidth - 2) && (ImgNumLigne <  imgHeigh))
 	{
 		/* Kernel Code Here */
 		imgout[Index] = img[Index];
@@ -137,7 +136,7 @@ extern "C" bool GPGPU_TstImg_CV_8U(cv::Mat* img, cv::Mat* GPGPUimg)
 	}
 
 
-	Kernel_Tst_Img_CV_8U << <dimGrid, dimBlock >> >(devImage, devImageOut, img->cols, img->rows);
+	Kernel_Tst_Img_CV_8U << <dimGrid, dimBlock >> >(devImage, devImageOut, img->step1(), img->rows);
 	// Check for any errors launching the kernel
 	cudaStatus = cudaGetLastError();
 	if (cudaStatus != cudaSuccess)
