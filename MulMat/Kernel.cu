@@ -51,46 +51,46 @@ __global__ void Kernel_Tst_Img_CV_8U(CV_8U *img, CV_8U *imgout, int ImgWidth, in
 	if ((ImgNumColonne < 1080) && (ImgNumLigne < 1920))
 	{
 		/* Kernel Code Here */
-		imgout[Index] = img[Index];
+		
+		/*imgout[Index] = img[Index];
 		imgout[Index + 1] = img[Index + 1];
-		imgout[Index + 2] = img[Index + 2];
+		imgout[Index + 2] = img[Index + 2];*/
 
-		//double blue = (double)img[Index] / 255;
-		//double green = (double)img[Index + 1] / 255;
-		//double red = (double)img[Index + 2] / 255;
+		double blue = (double)img[Index] / 255;
+		double green = (double)img[Index + 1] / 255;
+		double red = (double)img[Index + 2] / 255;
 
-		//double cMax = maxVal(blue, green, red);
-		//double cMin = minVal(blue, green, red);
+		double cMax = maxVal(blue, green, red);
+		double cMin = minVal(blue, green, red);
 
-		//double delta = cMax - cMin;
+		double delta = cMax - cMin;
 
-		////	HUE
-		//double hue = 0;
+		//	HUE
+		double hue = 0;
+		if (blue == cMax) {
+			hue = 60 * ((red - green) / delta + 4);
+		}
+		else if (green == cMax) {
+			hue = 60 * ((blue - red) / delta + 2);
+		}
+		else if (red == cMax) {
+			hue = 60 * ((green - blue) / delta);
+			if (hue < 0)
+				hue += 360;
+		}
 
-		//if (blue == cMax) {
-		//	hue = 60 * ((red - green) / delta + 4);
-		//}
-		//else if (green == cMax) {
-		//	hue = 60 * ((blue - red) / delta + 2);
-		//}
-		//else if (red == cMax) {
-		//	hue = 60 * ((green - blue) / delta);
-		//	if (hue < 0)
-		//		hue += 360;
-		//}
+		//	SATURATION
+		double saturation = 0;
+		if (cMax != 0) {
+			saturation = delta / cMax;
+		}
 
-		////	SATURATION
-		//double saturation = 0;
-		//if (cMax != 0) {
-		//	saturation = delta / cMax;
-		//}
+		//	VALUE
+		double value = cMax;
 
-		////	VALUE
-		//double value = cMax;
-
-		//imgout[Index] = hue / 2;
-		//imgout[Index + 1] = saturation * 255;
-		//imgout[Index + 2] = value * 255;
+		imgout[Index] = hue / 2;
+		imgout[Index + 1] = saturation * 255;
+		imgout[Index + 2] = value * 255;
 	}
 
 	return;
