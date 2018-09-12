@@ -46,9 +46,9 @@ __global__ void Kernel_Tst_Img_CV_8U(CV_8U *img, CV_8U *imgout, int ImgWidth, in
 {
 	int ImgNumColonne = blockIdx.x  * blockDim.x + threadIdx.x;
 	int ImgNumLigne = blockIdx.y  * blockDim.y + threadIdx.y;
-	int Index = (ImgNumLigne * ImgWidth + ImgNumColonne) * 3;
+	int Index = (ImgNumLigne * ImgWidth + ImgNumColonne * 3);
 
-	if ((ImgNumColonne < ImgWidth - 2) && (ImgNumLigne <  imgHeigh))
+	if ((ImgNumColonne < 1080) && (ImgNumLigne < 1920))
 	{
 		/* Kernel Code Here */
 		imgout[Index] = img[Index];
@@ -122,7 +122,6 @@ extern "C" bool GPGPU_TstImg_CV_8U(cv::Mat* img, cv::Mat* GPGPUimg)
 	// Launch a kernel on the GPU with one thread for each element.
 	dim3 dimBlock(BLOCK_SIZE, BLOCK_SIZE);
 	//dim3 dimGrid(iDivUp(img->step1(), BLOCK_SIZE), iDivUp(img->cols, BLOCK_SIZE));
-	//	PRINT EVERYTHING IF YOU MULTIPLY * 3
 	dim3 dimGrid(iDivUp(img->rows, BLOCK_SIZE), iDivUp(img->cols, BLOCK_SIZE));
 
 
