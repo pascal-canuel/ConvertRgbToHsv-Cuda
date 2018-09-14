@@ -11,10 +11,12 @@
 //#include "nppdefs.h"
 //#include <npp.h>
 
+typedef unsigned char uchar;
+
 #define BLOCK_SIZE 32
 #define CV_64FC1 double
 #define CV_32F float
-#define CV_8U char //SHOULD BE UCHAR??
+#define CV_8U uchar
 
 int iDivUp(int a, int b)
 {
@@ -42,13 +44,13 @@ int minVal(int blue, int green, int red) {
 }
 
 // Transfert img to imgout to see how opencv image can be acces in GPGPU
-__global__ void Kernel_Tst_Img_CV_8U(CV_8U *img, CV_8U *imgout, int ImgWidth, int imgHeigh)
+__global__ void Kernel_Tst_Img_CV_8U(uchar *img, uchar *imgout, int ImgWidth, int imgHeigh)
 {
 	int ImgNumColonne = blockIdx.x  * blockDim.x + threadIdx.x;
 	int ImgNumLigne = blockIdx.y  * blockDim.y + threadIdx.y;
 	int Index = (ImgNumLigne * ImgWidth + ImgNumColonne * 3);
 
-	if ((ImgNumColonne < 1920) && (ImgNumLigne < 1080))
+	if ((ImgNumColonne < ImgWidth/3) && (ImgNumLigne < imgHeigh))
 	{
 		/* Kernel Code Here */
 		
@@ -60,8 +62,21 @@ __global__ void Kernel_Tst_Img_CV_8U(CV_8U *img, CV_8U *imgout, int ImgWidth, in
 		double green = (double)img[Index + 1] / 255;
 		double red = (double)img[Index + 2] / 255;
 
-		double cMax = maxVal(blue, green, red);
-		double cMin = minVal(blue, green, red);
+		double cMax = 0;//= maxVal(blue, green, red);
+		if ((blue >= green) && (blue >= red))
+			cMax = blue;
+		else if ((green >= blue) && (green >= red))
+			cMax = green;
+		else
+			cMax = red;
+
+		double cMin = 0;//= minVal(blue, green, red);
+		if ((blue <= green) && (blue <= red))
+			cMin = blue;
+		else if ((green <= blue) && (green <= red))
+			cMin = green;
+		else
+			cMin = red;
 
 		double delta = cMax - cMin;
 
@@ -88,9 +103,9 @@ __global__ void Kernel_Tst_Img_CV_8U(CV_8U *img, CV_8U *imgout, int ImgWidth, in
 		//	VALUE
 		double value = cMax;
 
-		imgout[Index] = hue / 2;
-		imgout[Index + 1] = saturation * 255;
-		imgout[Index + 2] = value * 255;
+		imgout[Index] = (uchar)(hue / 2);
+		imgout[Index + 1] = (uchar)(saturation * 255);
+		imgout[Index + 2] = (uchar)(value * 255);
 	}
 
 	return;
@@ -99,8 +114,8 @@ __global__ void Kernel_Tst_Img_CV_8U(CV_8U *img, CV_8U *imgout, int ImgWidth, in
 extern "C" bool GPGPU_TstImg_CV_8U(cv::Mat* img, cv::Mat* GPGPUimg)
 {
 	cudaError_t cudaStatus;
-	CV_8U *devImage;
-	CV_8U *devImageOut;
+	uchar *devImage;
+	uchar *devImageOut;
 
 	unsigned int ImageSize = img->rows * img->step1();// step number of bytes in each row
 
@@ -122,7 +137,7 @@ extern "C" bool GPGPU_TstImg_CV_8U(cv::Mat* img, cv::Mat* GPGPUimg)
 	// Launch a kernel on the GPU with one thread for each element.
 	dim3 dimBlock(BLOCK_SIZE, BLOCK_SIZE);
 	//dim3 dimGrid(iDivUp(img->step1(), BLOCK_SIZE), iDivUp(img->cols, BLOCK_SIZE));
-	dim3 dimGrid(iDivUp(img->rows, BLOCK_SIZE), iDivUp(img->cols, BLOCK_SIZE)); //SHOULD BE INVERSE rows<->cols, so y:32x34 & x:32*60
+	dim3 dimGrid(iDivUp(img->cols, BLOCK_SIZE), iDivUp(img->rows, BLOCK_SIZE)); 
 
 
 	// Test only
