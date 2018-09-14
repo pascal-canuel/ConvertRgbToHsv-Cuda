@@ -24,7 +24,7 @@ int iDivUp(int a, int b)
 }
 
 __device__
-int maxVal(int blue, int green, int red) {
+double maxVal(double blue, double green, double red) {
 	if ((blue >= green) && (blue >= red))
 		return blue;
 	else if ((green >= blue) && (green >= red))
@@ -34,7 +34,7 @@ int maxVal(int blue, int green, int red) {
 }
 
 __device__
-int minVal(int blue, int green, int red) {
+double minVal(double blue, double green, double red) {
 	if ((blue <= green) && (blue <= red))
 		return blue;
 	else if ((green <= blue) && (green <= red))
@@ -52,31 +52,15 @@ __global__ void Kernel_Tst_Img_CV_8U(uchar *img, uchar *imgout, int ImgWidth, in
 
 	if ((ImgNumColonne < ImgWidth/3) && (ImgNumLigne < imgHeigh))
 	{
-		/* Kernel Code Here */
-		
-		/*imgout[Index] = img[Index];
-		imgout[Index + 1] = img[Index + 1];
-		imgout[Index + 2] = img[Index + 2];*/
+		/* Kernel Code Here */		
 
 		double blue = (double)img[Index] / 255;
 		double green = (double)img[Index + 1] / 255;
 		double red = (double)img[Index + 2] / 255;
 
-		double cMax = 0;//= maxVal(blue, green, red);
-		if ((blue >= green) && (blue >= red))
-			cMax = blue;
-		else if ((green >= blue) && (green >= red))
-			cMax = green;
-		else
-			cMax = red;
+		double cMax = maxVal(blue, green, red);
 
-		double cMin = 0;//= minVal(blue, green, red);
-		if ((blue <= green) && (blue <= red))
-			cMin = blue;
-		else if ((green <= blue) && (green <= red))
-			cMin = green;
-		else
-			cMin = red;
+		double cMin = minVal(blue, green, red);
 
 		double delta = cMax - cMin;
 
