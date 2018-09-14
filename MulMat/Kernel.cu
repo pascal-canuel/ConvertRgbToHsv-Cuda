@@ -48,7 +48,7 @@ __global__ void Kernel_Tst_Img_CV_8U(CV_8U *img, CV_8U *imgout, int ImgWidth, in
 	int ImgNumLigne = blockIdx.y  * blockDim.y + threadIdx.y;
 	int Index = (ImgNumLigne * ImgWidth + ImgNumColonne * 3);
 
-	if ((ImgNumColonne < 1080) && (ImgNumLigne < 1920))
+	if ((ImgNumColonne < 1920) && (ImgNumLigne < 1080))
 	{
 		/* Kernel Code Here */
 		
