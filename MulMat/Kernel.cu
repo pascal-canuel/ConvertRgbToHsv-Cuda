@@ -14,7 +14,7 @@
 #define BLOCK_SIZE 32
 #define CV_64FC1 double
 #define CV_32F float
-#define CV_8U char
+#define CV_8U char //SHOULD BE UCHAR??
 
 int iDivUp(int a, int b)
 {
