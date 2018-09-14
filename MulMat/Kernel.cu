@@ -122,7 +122,7 @@ extern "C" bool GPGPU_TstImg_CV_8U(cv::Mat* img, cv::Mat* GPGPUimg)
 	// Launch a kernel on the GPU with one thread for each element.
 	dim3 dimBlock(BLOCK_SIZE, BLOCK_SIZE);
 	//dim3 dimGrid(iDivUp(img->step1(), BLOCK_SIZE), iDivUp(img->cols, BLOCK_SIZE));
-	dim3 dimGrid(iDivUp(img->rows, BLOCK_SIZE), iDivUp(img->cols, BLOCK_SIZE));
+	dim3 dimGrid(iDivUp(img->rows, BLOCK_SIZE), iDivUp(img->cols, BLOCK_SIZE)); //SHOULD BE INVERSE rows<->cols, so y:32x34 & x:32*60
 
 
 	// Test only
