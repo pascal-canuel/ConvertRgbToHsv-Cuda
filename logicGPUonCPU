@@ -1,0 +1,53 @@
+String imgPathRGB = "../picture/lena.jpg";
+	Mat imgRGB = imread(imgPathRGB);
+
+	imshow("1_RGB", imgRGB);
+
+	for (int y = 0; y < imgRGB.rows; y++) {
+		for (int x = 0; x < imgRGB.cols; x++) {
+			//Vec3b pix = imgRGB.at<Vec3b>(y, x);
+			int width = y * imgRGB.step1();
+			int index = (width + x * 3);
+
+			double blue = (double)imgRGB.data[index] / 255;
+			double green = (double)imgRGB.data[index + 1] / 255;
+			double red = (double)imgRGB.data[index + 2] / 255;
+
+			double cMax = max(max(blue, green), red);
+
+			double cMin = min(min(blue, green), red);
+
+			double delta = cMax - cMin;
+
+			//	HUE
+			double hue = 0;
+
+			if (blue == cMax) {
+				hue = 60 * ((red - green) / delta + 4);
+			}
+			else if (green == cMax) {
+				hue = 60 * ((blue - red) / delta + 2);
+			}
+			else if (red == cMax) {
+				hue = 60 * ((green - blue) / delta);
+				if (hue < 0)
+					hue += 360;
+			}
+
+			//	SATURATION
+			double saturation = 0;
+			if (cMax != 0) {
+				saturation = delta / cMax;
+			}
+
+			//	VALUE
+			double value = cMax;
+
+			//	MAP (360:100:100) TO OPENCV VALUE (180:255:255)
+			imgRGB.data[index] = (uchar)(hue / 2);
+			imgRGB.data[index + 1] = (uchar)(saturation * 255);
+			imgRGB.data[index + 2] = (uchar)(value * 255);
+		}
+	}
+
+	imshow("1_HSV", imgRGB);
