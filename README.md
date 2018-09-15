@@ -5,14 +5,14 @@
 
 <p align="center">🌈 Parallelization and implementation of the algorithm to convert RGB pictures to HSV in CUDA. 🌈 </p>
 
-<p align="center">Algorithm</p>
+<h1 align="center">Algorithm</h1> 
 1. The R,G,B values are divided by 255 to change the range from 0..255 to 0..1:<br>
 R' = R/255<br>
 G' = G/255<br> 
 B' = B/255<br>  
 2. Find the maximum & minimum<br>
 Cmax = max(R', G', B')<br>
-Cmin = min(R', G', B')
+Cmin = min(R', G', B')<br>
 3. Find delta<br>
 Δ = Cmax - Cmin<br>
 4. Hue calculation:
