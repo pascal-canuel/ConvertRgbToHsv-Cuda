@@ -6,21 +6,20 @@
 <p align="center">🌈 Parallelization and implementation of the algorithm to convert RGB pictures to HSV in CUDA. 🌈 </p>
 
 <p align="center">Algorithm</p>
-1. The R,G,B values are divided by 255 to change the range from 0..255 to 0..1:
-R' = R/255   
-G' = G/255   
-B' = B/255   
-2. 
-Cmax = max(R', G', B')
+1. The R,G,B values are divided by 255 to change the range from 0..255 to 0..1:<br>
+R' = R/255<br>
+G' = G/255<br> 
+B' = B/255<br>  
+2. Find the maximum & minimum<br>
+Cmax = max(R', G', B')<br>
 Cmin = min(R', G', B')
-
-Δ = Cmax - Cmin
- 
-Hue calculation:
-
-Saturation calculation:
-
-Value calculation:
-
+3. Find delta<br>
+Δ = Cmax - Cmin<br>
+4. Hue calculation:
+<img src="https://www.rapidtables.com/convert/color/rgb-to-hsv/hue-calc2.gif"/>
+5. Saturation calculation:
+<img src="https://www.rapidtables.com/convert/color/rgb-to-hsv/sat-calc.gif"/>
+6. Value calculation:<br>
 V = Cmax
+
 ## By Pascal Canuel
