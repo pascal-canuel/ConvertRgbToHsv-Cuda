@@ -1,10 +1,8 @@
-# CudaLab1
-Voici un squelette de départ pour développer avec CUDA et OpenCV
-# Compilation
-Si tout est correct, une image de lena en grayscale devrait apparaître en gris
-# Highlighting
-1. Aller dans `Outils->Options->Éditeur de texte->Extension de fichier`
-2. Ajouter l'extension `cu`
-3. Choisir l'éditeur `Microsoft Visual C++`
-# Intellisense
- 
+<h1 align="center">Convert RGB2HSV - Cuda</h1> 
+<p align="center">
+<img src="https://img.shields.io/badge/License-MIT-blue.svg">
+</p>
+
+<p align="center">🌈 Parallelization and implementation of the algorithm to convert RGB pictures to HSV in CUDA. 🌈 </p>
+
+## By Pascal Canuel
