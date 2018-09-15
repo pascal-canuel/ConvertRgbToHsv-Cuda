@@ -9,16 +9,16 @@
 1. The R,G,B values are divided by 255 to change the range from 0..255 to 0..1:<br>
 R' = R/255<br>
 G' = G/255<br> 
-B' = B/255<br>  
+B' = B/255<br><br>  
 2. Find the maximum & minimum<br>
 Cmax = max(R', G', B')<br>
-Cmin = min(R', G', B')<br>
+Cmin = min(R', G', B')<br><br>
 3. Find delta<br>
-Δ = Cmax - Cmin<br>
+Δ = Cmax - Cmin<br><br>
 4. Hue calculation:
-<img src="https://www.rapidtables.com/convert/color/rgb-to-hsv/hue-calc2.gif"/>
+<img src="https://www.rapidtables.com/convert/color/rgb-to-hsv/hue-calc2.gif"/><br>
 5. Saturation calculation:
-<img src="https://www.rapidtables.com/convert/color/rgb-to-hsv/sat-calc.gif"/>
+<img src="https://www.rapidtables.com/convert/color/rgb-to-hsv/sat-calc.gif"/><br>
 6. Value calculation:<br>
 V = Cmax
 
